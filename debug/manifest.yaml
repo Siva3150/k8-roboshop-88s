@@ -1,0 +1,15 @@
+apiVersion: v1 
+kind: Pod 
+metadata: 
+ name: debug 
+ namespace: roboshop
+ labels: 
+  name: debug 
+  project: roboshop 
+spec: 
+ containers: 
+ - name: debug 
+   image: siva3150/debug:v1 
+   imagePullPolicy: Always 
+
+ 
