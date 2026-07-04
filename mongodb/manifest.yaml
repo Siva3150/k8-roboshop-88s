@@ -26,8 +26,34 @@ spec:
    containers: 
    - name: mongodb 
      image: siva3150/mongodb:v1 
-     imagePullPolicy: always 
-      
+     imagePullPolicy: always
+     readinessProbe: 
+      tcpSocket: 
+       port: 27017 
+      initialDelaySeconds: 10 
+      periodSeconds: 10 
+     livenessProbe: 
+      tcpSocket:
+       port: 27017
+      initialDelaySeconds: 10 
+      periodSeconds: 10  
+
+---
+apiversion: v1 
+kind: Service 
+metadata: 
+ name: momgodb 
+ namespace: roboshop 
+spec: 
+ selector: 
+  project: roboshop 
+  component: mongodb 
+  tier: db
+ ports: 
+  - protocol: TCP 
+    port: 27017 # service port
+    targetPort: 27017 # container port 
+
  
 
 
